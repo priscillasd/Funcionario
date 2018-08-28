@@ -51,17 +51,19 @@ public class Funcionario {
 	
 	public double getSalarioLiquido() {
 		double salarioLiquido = getSalarioBruto();
-		if(getSalarioBase() <= 1693.72) {
-			salarioLiquido -= (getSalarioBase()*0.08);
+		// inss
+		if(getSalarioBase() <= 5000.0) {
+			salarioLiquido -= (getSalarioBase()*0.045);
 		}
-		if(getSalarioBase() > 1693.72 && getSalarioBase() <= 2822.90) {
-			salarioLiquido -= (getSalarioBase()*0.09);
+		if(getSalarioBase() > 5000.0) {
+			salarioLiquido -= (5000*0.045);
 		}
-		if(getSalarioBase() > 2822.90 && getSalarioBase() <= 5645.80) {
-			salarioLiquido -= (getSalarioBase()*0.11);
+		// imposto de renda
+		if(getSalarioBase() > 2000.0 && getSalarioBase() <= 5000.0) {
+			salarioLiquido -= (getSalarioBase()*0.12);
 		}
-		if(getSalarioBase() > 5645.80) {
-			salarioLiquido -= 621.04;
+		if(getSalarioBase() > 5000.0) {
+			salarioLiquido -= (getSalarioBase()*0.275);
 		}
 		return salarioLiquido;
 	}
