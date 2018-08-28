@@ -37,10 +37,32 @@ public class Funcionario {
 	}
 	
 	public double getSalarioBruto() {
-		return 0;
+		double salarioBruto = salarioBase;
+		if(insalubridade) {
+			salarioBruto += (salarioBase*0.1);
+		}
+		if(getNroDependentes() > 0) {
+			for(int i = 0; i < getNroDependentes(); i++) {
+				salarioBruto += (salarioBase*0.01);
+			}
+		}
+		return salarioBruto;
 	}
 	
 	public double getSalarioLiquido() {
-		return 0;
+		double salarioLiquido = getSalarioBruto();
+		if(getSalarioBase() <= 1693.72) {
+			salarioLiquido -= (getSalarioBase()*0.08);
+		}
+		if(getSalarioBase() > 1693.72 && getSalarioBase() <= 2822.90) {
+			salarioLiquido -= (getSalarioBase()*0.09);
+		}
+		if(getSalarioBase() > 2822.90 && getSalarioBase() <= 5645.80) {
+			salarioLiquido -= (getSalarioBase()*0.11);
+		}
+		if(getSalarioBase() > 5645.80) {
+			salarioLiquido -= 621.04;
+		}
+		return salarioLiquido;
 	}
 }
